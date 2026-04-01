@@ -1,0 +1,15 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.appsynergies.minglewise",
+            "sha256_cert_fingerprints": [
+                "AF:B8:80:7B:F5:7D:64:93:59:03:FA:72:0B:D5:DC:06:94:A7:B7:7C:E3:87:9C:74:E6:C2:57:5B:72:0A:23:6A",
+                "3B:30:99:98:EA:6F:60:6A:9D:9B:8E:E5:8C:6A:E8:33:24:63:EF:52:0D:FC:CA:B3:1D:5C:EA:2C:B6:9C:19:D3"
+            ]
+        }
+    }
+]

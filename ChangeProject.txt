@@ -1,0 +1,95 @@
+===================================
+
+Live Mw Website =>
+
+"site": "minglewise",
+
+Testing Mw Website =>
+
+"site": "testing-minglewise",
+
+
+
+============ Commands ============
+
+firebase deploy
+firebase deploy --only functions
+
+firebase use production
+firebase use testing
+
+firebase hosting:sites:list
+
+firebase target:apply hosting website testing-any-website
+
+
+===================================================
+
+
+"production": "website-82a4f",
+"testing": "flutter-experience-app"
+
+
+{
+  "projects": {
+    "production": "minglewise2019",
+    "testing": "flutter-experience-app",
+  }
+}
+
+
+
+
+
+==================================
+
+
+{
+  "projects": {
+    "production": "website-82a4f",
+    "testing": "flutter-experience-app"
+  },
+  "targets": {
+    "flutter-experience-app": {
+      "hosting": {
+        "website": [
+          "testing-any-website"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
+
+
+
+
+
+
+
+============================================
+
+{
+  "projects": {
+    "default": "minglewise2019"
+  }
+}
+
+
+
+
+{
+  "hosting": {
+    "site": "minglewise",
+    "source": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [{
+      "source": "**",
+      "destination": "/index.html"
+    }]
+  }
+}

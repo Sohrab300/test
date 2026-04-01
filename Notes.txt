@@ -1,0 +1,130 @@
+
+
+
+============ Commands ============
+
+firebase deploy
+firebase deploy --only functions
+
+firebase use production
+firebase use testing
+
+firebase hosting:sites:list
+
+firebase target:apply hosting website testing-any-website
+
+===================================================
+
+
+
+"testing": "flutter-experience-app"
+
+"site": "testing-mw-website",
+
+{
+  "projects": {
+    "production": "minglewise2019",
+    "testing": "flutter-experience-app",
+  }
+}
+
+
+
+
+
+==================================
+
+
+{
+  "projects": {
+    "production": "website-82a4f",
+    "testing": "flutter-experience-app"
+  },
+  "targets": {
+    "flutter-experience-app": {
+      "hosting": {
+        "website": [
+          "testing-any-website"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
+
+
+
+
+
+
+
+============================================
+
+{
+  "projects": {
+    "default": "minglewise2019"
+  }
+}
+
+
+
+
+{
+  "hosting": {
+    "site": "minglewise",
+    "source": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [{
+      "source": "**",
+      "destination": "/index.html"
+    }]
+  }
+}
+
+    "production": "website-82a4f",
+    "testing": "flutter-experience-app"
+
+npm i
+npm run dev
+
+firebase login
+
+You need to login from the same company id that has access to the firebase project
+
+firebase init
+
+1 - select hosting - press space and then enter
+2 - yes to next js
+3 - no to  automatic builds
+
+2  New files will be generated =>
+    1 - firebase.json
+    2 - .firebaserc
+
+
+
+
+In firebase.json ===>>>>>
+
+{
+  "hosting": {
+    "site": "minglewise",
+    "source": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
+
+
+firebase deploy
+
+
+*If you face any deployment issues like, image loading or image disappearing then please use node version 16
+

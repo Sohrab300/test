@@ -1,0 +1,30 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "QRFF4S3Z2A.com.appsynergies.minglewise",
+                "paths": [
+                    "/event/*",
+                    "/virtualExperience/*",
+                    "/irlExperience/*",
+                    "/stories/*",
+                    "/streams/*",
+                    "/jobs/*",
+                    "/companyProfile/*",
+                    "/blogs/*"
+                ]
+            }
+        ]
+    },
+    "webcredentials": {
+        "apps": [
+            "QRFF4S3Z2A.com.appsynergies.minglewise"
+        ]
+    },
+    "appclips": {
+        "apps": [
+            "QRFF4S3Z2A.com.appsynergies.minglewise"
+        ]
+    }
+}

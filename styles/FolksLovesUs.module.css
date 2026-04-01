@@ -1,0 +1,38 @@
+.root {
+  @apply relative w-full bg-gradient-to-r from-[#F7F0FB] to-[#FCF4F5];
+  position: relative;
+}
+
+.card {
+  @apply relative bg-white mx-10 my-20;
+  min-height: 280px;
+  border: 1px solid #808080;
+  border-radius: 8px;
+}
+.content {
+  @apply p-10 flex flex-col justify-between h-full;
+}
+.title {
+  margin-top: 5px;
+@apply flex
+}
+.reviews {
+  @apply relative;
+}
+.avatar {
+  @apply flex  items-center space-x-2 w-full h-full;
+}
+.rectangle {
+  width: 187px;
+  height: 321px;
+  right: 0px;
+  top: 80px;
+  z-index: 2;
+  background: linear-gradient(
+    270deg,
+    #fcf4f4 0%,
+    rgba(251, 243, 245, 1) 27.84%,
+    rgba(250, 243, 246, 0.89) 67.19%,
+    rgba(217, 217, 217, 0) 100%
+  );
+}

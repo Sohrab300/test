@@ -1,0 +1,25 @@
+{
+  "title": "MingleWise | Dating | Networking | Events | Connections",
+  "titleTemplate": "%s | MingleWise",
+  "description": "Minglewise is world's first all-in-one AI-driven app for dating, networking & events to find, meet & develop meaningful connections.",
+  "openGraph": {
+    "title": "MingleWise | Dating | Networking | Events | Connections",
+    "description": "Minglewise is world's first all-in-one AI-driven app for dating, networking & events to find, meet & develop meaningful connections.",
+    "type": "website",
+    "url": "https://minglewise.com/",
+    "site_name": "MingleWise",
+    "images": [
+      {
+        "url": "/assets/logo/white_logo.webp",
+        "width": "500",
+        "height": "500",
+        "alt": "MingleWise"
+      }
+    ]
+  },
+  "twitter": {
+    "handle": "@minglewise",
+    "site": "@minglewise",
+    "cardType": "summary_large_image"
+  }
+}
