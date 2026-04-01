@@ -50,37 +50,47 @@ body::-webkit-scrollbar-thumb {
   );
 }
 
-
 .dots {
-   width: 56px;
-   height: 26.9px;
-   background: radial-gradient(circle closest-side,#9304df 80%,#0000) 0%   50%,
-          radial-gradient(circle closest-side,#d73d8c 80%,#0000) 50%  50%,
-          radial-gradient(circle closest-side,#f95963 80%,#0000) 100% 50%;
-   background-size: calc(100%/3) 13.4px;
-   background-repeat: no-repeat;
-   animation: dots-7ar3yq 1s infinite linear;
+  width: 56px;
+  height: 26.9px;
+  background:
+    radial-gradient(circle closest-side, #9304df 80%, #0000) 0% 50%,
+    radial-gradient(circle closest-side, #d73d8c 80%, #0000) 50% 50%,
+    radial-gradient(circle closest-side, #f95963 80%, #0000) 100% 50%;
+  background-size: calc(100% / 3) 13.4px;
+  background-repeat: no-repeat;
+  animation: dots-7ar3yq 1s infinite linear;
 }
 
 @keyframes dots-7ar3yq {
-   20% {
-      background-position: 0%   0%, 50%  50%,100%  50%;
-   }
+  20% {
+    background-position:
+      0% 0%,
+      50% 50%,
+      100% 50%;
+  }
 
-   40% {
-      background-position: 0% 100%, 50%   0%,100%  50%;
-   }
+  40% {
+    background-position:
+      0% 100%,
+      50% 0%,
+      100% 50%;
+  }
 
-   60% {
-      background-position: 0%  50%, 50% 100%,100%   0%;
-   }
+  60% {
+    background-position:
+      0% 50%,
+      50% 100%,
+      100% 0%;
+  }
 
-   80% {
-      background-position: 0%  50%, 50%  50%,100% 100%;
-   }
+  80% {
+    background-position:
+      0% 50%,
+      50% 50%,
+      100% 100%;
+  }
 }
-
-
 
 .chatbot-z {
   z-index: 9999 !important;
@@ -415,9 +425,6 @@ body {
   color: white;
 }
 
-
-
-
 /* Custom radio button container */
 .custom-radio-label {
   cursor: pointer;
@@ -429,60 +436,53 @@ body {
 .custom-radio-button {
   width: 20px;
   height: 20px;
-  background-color: #fff; 
+  background-color: #fff;
   border-radius: 50%;
   border: 2px solid #d4d4d4;
-  transition: border-color 0.3s ease-in-out; 
+  transition: border-color 0.3s ease-in-out;
 }
 
 /* Custom radio button checked state */
-input[type='radio']:checked + .custom-radio-label .custom-radio-button {
-  border-color: rgba(136, 0, 225, 1); 
+input[type="radio"]:checked + .custom-radio-label .custom-radio-button {
+  border-color: rgba(136, 0, 225, 1);
 }
 
 /* Custom styling for the dot inside the button */
-input[type='radio']:checked + .custom-radio-label .custom-radio-button::after {
-  content: '';
+input[type="radio"]:checked + .custom-radio-label .custom-radio-button::after {
+  content: "";
   width: 10px;
   height: 10px;
-  background-color: rgba(136, 0, 225, 1); 
+  background-color: rgba(136, 0, 225, 1);
   border-radius: 50%;
   display: block;
   margin: 3px;
 }
-#test{
-float: none; 
-position: fixed; 
-bottom: 50px; 
-right: 40px;
-z-index: 99;
- box-shadow: 0px 0px 6px 0px #fb775f;
- border-radius: 50px;
+#test {
+  float: none;
+  position: fixed;
+  bottom: 50px;
+  right: 40px;
+  z-index: 99;
+  box-shadow: 0px 0px 6px 0px #fb775f;
+  border-radius: 50px;
 }
 
-#test:hover{
-
-border: 2px solid white;
-color: white;
-
+#test:hover {
+  border: 2px solid white;
+  color: white;
 }
 
-#test1{
-float: none; 
-position: fixed; 
-bottom: 50px; 
-right: 30px;
-z-index: 99;
- box-shadow: 0px 0px 6px 0px #fb775f;
- border-radius: 50px;
+#test1 {
+  float: none;
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  z-index: 99;
+  box-shadow: 0px 0px 6px 0px #fb775f;
+  border-radius: 50px;
 }
 
-#test1:hover{
-
-border: 2px solid white;
-color: white;
-
+#test1:hover {
+  border: 2px solid white;
+  color: white;
 }
-
-
-
