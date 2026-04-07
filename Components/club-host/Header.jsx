@@ -31,7 +31,7 @@ export default function ClubHostHeader() {
       {/* 1. Background Layer (Grid and Radial Lines) */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/club-host/Hero-bg.png"
+          src="/club-host/hero-bg.png"
           alt="Background Grid"
           fill
           priority

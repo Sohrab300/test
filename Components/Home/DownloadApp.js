@@ -113,7 +113,7 @@ const DownloadApp = () => {
           >
             <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
               <Image
-                src="/hero-download.png"
+                src="/Hero-download.png"
                 alt="MingleWise App Interface"
                 fill
                 unoptimized
