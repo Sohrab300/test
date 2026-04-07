@@ -24,8 +24,16 @@ export default function App({ Component, pageProps }) {
 
   const [pageName, setPageName] = useState("");
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // useEffect(() => {
   //   fbq.pageview();
@@ -40,12 +48,6 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     TagManager.initialize({ gtmId: "G-1GDKXS7R5W" });
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(true);
-    }, 2000);
   }, []);
 
   const stateInfo = {
