@@ -9,19 +9,22 @@ export default function Header() {
   const textGradient =
     "text-transparent bg-clip-text bg-gradient-to-r from-[#F0015F] via-[#ED006A] via-[#D602AF] to-[#C301EA]";
 
-  const scrollToNewsletter = (e) => {
-    e.preventDefault();
-    const element = document.getElementById("newsletter-signup");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   const scrollToDownloadapp = (e) => {
     e.preventDefault();
     const element = document.getElementById("download-the-app");
+
     if (element) {
+      // 1. Add a class to body to disable pointer events (hovers)
+      document.body.classList.add("is-scrolling");
+
+      // 2. Perform the scroll
       element.scrollIntoView({ behavior: "smooth" });
+
+      // 3. Remove the class after the scroll completes
+      // (Roughly 1000ms is enough for most smooth scrolls)
+      setTimeout(() => {
+        document.body.classList.remove("is-scrolling");
+      }, 1200);
     }
   };
 
@@ -63,7 +66,7 @@ export default function Header() {
           >
             {/* Join Now Button */}
             <button
-              onClick={scrollToNewsletter}
+              onClick={scrollToDownloadapp}
               className={`${brandGradient} text-white px-10 py-2.5 rounded-full font-bold text-lg shadow-lg hover:opacity-90 transition-all active:scale-95`}
             >
               Join Now
@@ -93,6 +96,7 @@ export default function Header() {
             height={800}
             priority
             className="w-full h-auto object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1200px, 1400px"
           />
         </motion.div>
       </div>

@@ -4,7 +4,7 @@ import Head from "next/head";
 const TermsOfUse = () => {
   // Style constants for exact visual match
   const sectionTitle =
-    "text-2xl font-bold text-[#333333] mt-8 mb-3 poppins-text";
+    "text-2xl font-semibold text-[#333333] mt-8 mb-3 poppins-text";
   const paragraphClass =
     "text-[#4d4d4d] leading-relaxed mb-4 text-[18px] poppins-text";
   const listClass =
@@ -14,23 +14,23 @@ const TermsOfUse = () => {
   return (
     <div className="bg-[#fbf5ff] min-h-screen">
       <Head>
-        <title>Terms and Condition | MingleWise</title>
+        <title>Terms of Use | MingleWise</title>
       </Head>
 
       <div className="max-w-7xl mx-auto px-6 py-20 lg:py-32">
         {/* Page Title */}
         <h1 className="text-4xl md:text-5xl font-bold text-[#333333] text-center mb-24 mt-20 poppins-text">
-          Terms and Condition
+          Terms of Use
         </h1>
 
         <div className="bg-transparent">
           <section>
             <h2 className={sectionTitle}>Introduction</h2>
             <p className={paragraphClass}>
-              These Terms and Conditions govern the use of the Minglewise
-              platform, including its website and mobile application operated by
+              These Terms of Use govern the use of the Minglewise platform,
+              including its website and mobile application operated by
               AppSynergies Pvt. Ltd. By accessing or using the Platform, you
-              agree to comply with and be bound by these Terms and Conditions.
+              agree to comply with and be bound by these Terms of Use.
             </p>
           </section>
 
@@ -198,17 +198,17 @@ const TermsOfUse = () => {
           <section>
             <h2 className={sectionTitle}>Changes to Terms</h2>
             <p className={paragraphClass}>
-              Minglewise may revise these Terms and Conditions at any time.
-              Updated terms will be published on the Platform, and continued use
-              of the service indicates acceptance of the revised terms.
+              Minglewise may revise these Terms of Use at any time. Updated
+              terms will be published on the Platform, and continued use of the
+              service indicates acceptance of the revised terms.
             </p>
           </section>
 
           <section>
             <h2 className={sectionTitle}>Governing Law</h2>
             <p className={paragraphClass}>
-              These Terms and Conditions are governed by the applicable laws of
-              the jurisdiction in which AppSynergies Pvt. Ltd. operates.
+              These Terms of Use are governed by the applicable laws of the
+              jurisdiction in which AppSynergies Pvt. Ltd. operates.
             </p>
           </section>
 
@@ -218,8 +218,7 @@ const TermsOfUse = () => {
               Contact Information
             </h2>
             <p className={paragraphClass}>
-              For any questions regarding these Terms and Conditions, please
-              contact:
+              For any questions regarding these Terms of Use, please contact:
             </p>
             <div className="space-y-1">
               <p className="text-[14px] text-[#333333] poppins-text">

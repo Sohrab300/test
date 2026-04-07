@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const FormHeader = () => {
@@ -15,9 +16,12 @@ const FormHeader = () => {
 
         {/* Mascot Image */}
         <div className="absolute right-4 bottom-0 h-[85%] md:h-[95%]">
-          <img
+          <Image
             src="/venue-partner/form-hero-img.png"
             alt="Mascot"
+            width={436}
+            height={408}
+            unoptimized
             className="h-full w-auto object-contain object-bottom"
           />
         </div>

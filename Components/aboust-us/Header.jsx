@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Header = () => {
@@ -5,9 +6,12 @@ const Header = () => {
     <section className="relative w-full py-16 md:py-24 overflow-hidden flex flex-col items-center justify-center">
       {/* Left Pattern Block */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 hidden md:block select-none pointer-events-none">
-        <img
+        <Image
           src="/about-us/left.png"
           alt=""
+          width={401}
+          height={150}
+          unoptimized
           className="h-24 md:h-20 lg:h-30 xl:h-32 w-auto object-contain"
         />
       </div>
@@ -29,9 +33,12 @@ const Header = () => {
 
       {/* Right Pattern Block */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block select-none pointer-events-none">
-        <img
+        <Image
           src="/about-us/right.png"
           alt=""
+          width={401}
+          height={150}
+          unoptimized
           className="h-24 md:h-20 lg:h-30 xl:h-32 w-auto object-contain"
         />
       </div>

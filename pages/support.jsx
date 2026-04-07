@@ -1,9 +1,13 @@
 import FAQSection from "@/Components/FAQSection";
 import DownloadApp from "@/Components/Home/DownloadApp";
 import Head from "@/Head";
-import React from "react";
+import React, { useEffect } from "react";
 
 const faq = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const textGradient =
     "text-transparent bg-clip-text bg-gradient-to-r from-[#F0015F] via-[#ED006A] via-[#D602AF] to-[#C301EA]";
   return (

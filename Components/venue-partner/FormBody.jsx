@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import { X, ChevronDown, Search, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -51,6 +52,14 @@ const COUNTRIES = [
   { name: "New Zealand", code: "+64", flag: "🇳🇿", iso: "NZ" },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
+const URL_REGEX = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
+
+const ErrorMessage = ({ message }) => (
+  <p className="text-red-500 text-xs mt-1 ml-1 animate-in fade-in slide-in-from-top-1">
+    {message}
+  </p>
+);
+
 const InputCard = ({ label, children }) => (
   <div className="bg-white p-6 rounded-2xl shadow-sm mb-4 border border-gray-100">
     <label className="block text-gray-700 font-semibold mb-4">{label}</label>
@@ -67,7 +76,7 @@ const RadioOption = ({ name, label, value, onChange, checked }) => (
       onChange={onChange}
       checked={checked}
       required
-      className="form-radio h-5 w-5 text-pink-600 border-gray-300 focus:ring-pink-500"
+      className="form-radio h-5 w-5 text-pink-600 border-gray-300 focus:ring-blue-500"
     />
     <span className="text-gray-600 group-hover:text-black transition-colors">
       {label}
@@ -78,9 +87,10 @@ const RadioOption = ({ name, label, value, onChange, checked }) => (
 const FormBody = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
 
   // Form State - ALL text inputs are tracked here
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     userName: "",
     phoneNumber: "",
     venueName: "",
@@ -90,7 +100,8 @@ const FormBody = () => {
     googleMapsLink: "",
     photosVideosLink: "",
     additionalNotes: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialFormData);
 
   // Radio states
   const [venueType, setVenueType] = useState("");
@@ -99,6 +110,19 @@ const FormBody = () => {
   const [spaceType, setSpaceType] = useState("");
   const [availability, setAvailability] = useState("");
   const [ownership, setOwnership] = useState("");
+  const [isAgreed, setIsAgreed] = useState(false);
+
+  const resetForm = () => {
+    setFormData(initialFormData);
+    setVenueType("");
+    setOtherVenueType("");
+    setCapacity("");
+    setSpaceType("");
+    setAvailability("");
+    setOwnership("");
+    setIsAgreed(false);
+    setShowErrors(false);
+  };
 
   // Phone Picker States
   const [isPickerOpen, setIsPickerOpen] = useState(false);
@@ -120,7 +144,13 @@ const FormBody = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Numeric restriction for specific fields
+    if (name === "phoneNumber" || name === "pincode") {
+      const numericValue = value.replace(/\D/g, "");
+      setFormData((prev) => ({ ...prev, [name]: numericValue }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const filteredCountries = COUNTRIES.filter(
@@ -131,9 +161,40 @@ const FormBody = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShowErrors(true);
 
-    if (venueType === "Other" && !otherVenueType.trim()) {
-      alert("Please specify the 'Other' venue type");
+    const isGoogleMapsLinkValid = URL_REGEX.test(formData.googleMapsLink);
+    const isPhotosVideosLinkValid = URL_REGEX.test(formData.photosVideosLink);
+
+    // Check if all required fields are filled
+    const isFormValid =
+      formData.userName &&
+      formData.phoneNumber &&
+      formData.venueName &&
+      formData.city &&
+      formData.address &&
+      formData.pincode &&
+      formData.googleMapsLink &&
+      isGoogleMapsLinkValid &&
+      (venueType === "Other" ? otherVenueType.trim() : venueType) &&
+      capacity &&
+      spaceType &&
+      formData.photosVideosLink &&
+      isPhotosVideosLinkValid &&
+      availability &&
+      ownership &&
+      isAgreed;
+
+    if (!isFormValid) {
+      // Scroll to the first error after the state update re-renders the component
+      setTimeout(() => {
+        const firstError = document.querySelector(
+          ".border-red-500, .bg-red-50",
+        );
+        if (firstError) {
+          firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 100);
       return;
     }
 
@@ -185,6 +246,7 @@ const FormBody = () => {
       if (response.ok) {
         window.scrollTo({ top: 0, behavior: "smooth" });
         setIsSubmitted(true);
+        resetForm();
       } else {
         throw new Error("Failed to submit form");
       }
@@ -194,6 +256,16 @@ const FormBody = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const getInputClassName = (value, isValid = true) => {
+    const base =
+      "w-full bg-gray-50 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none border transition-colors";
+    const errorBorder =
+      showErrors && (!value || !isValid)
+        ? "border-red-500"
+        : "border-transparent";
+    return `${base} ${errorBorder}`;
   };
 
   return (
@@ -219,7 +291,7 @@ const FormBody = () => {
           </p>
         </header>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} noValidate className="space-y-4">
           <InputCard
             label={
               <>
@@ -234,8 +306,11 @@ const FormBody = () => {
               value={formData.userName}
               onChange={handleInputChange}
               placeholder="Your answer"
-              className="w-full bg-gray-50 border-none rounded-lg p-3 focus:ring-2 focus:ring-pink-500 outline-none"
+              className={getInputClassName(formData.userName)}
             />
+            {showErrors && !formData.userName && (
+              <ErrorMessage message="This field is required" />
+            )}
           </InputCard>
 
           {/* Contact Number */}
@@ -247,7 +322,11 @@ const FormBody = () => {
             }
           >
             <div
-              className="flex items-center bg-gray-50 rounded-lg p-1 relative"
+              className={`flex items-center bg-gray-50 rounded-lg p-1 relative border transition-colors ${
+                showErrors && !formData.phoneNumber
+                  ? "border-red-500"
+                  : "border-transparent"
+              }`}
               ref={pickerRef}
             >
               <button
@@ -285,7 +364,7 @@ const FormBody = () => {
                           placeholder="Search country..."
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
-                          className="w-full pl-9 pr-3 py-2 bg-gray-100 rounded-lg text-sm outline-none focus:ring-2 focus:ring-pink-500"
+                          className="w-full pl-9 pr-3 py-2 bg-gray-100 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
                     </div>
@@ -334,6 +413,9 @@ const FormBody = () => {
                 className="w-full bg-transparent border-none p-3 focus:ring-0 outline-none"
               />
             </div>
+            {showErrors && !formData.phoneNumber && (
+              <ErrorMessage message="This field is required" />
+            )}
           </InputCard>
 
           {/* Venue Name */}
@@ -351,8 +433,11 @@ const FormBody = () => {
               value={formData.venueName}
               onChange={handleInputChange}
               placeholder="Your answer"
-              className="w-full bg-gray-50 border-none rounded-lg p-3 outline-none"
+              className={getInputClassName(formData.venueName)}
             />
+            {showErrors && !formData.venueName && (
+              <ErrorMessage message="This field is required" />
+            )}
           </InputCard>
 
           {/* City */}
@@ -371,8 +456,11 @@ const FormBody = () => {
               value={formData.city}
               onChange={handleInputChange}
               placeholder="Your answer"
-              className="w-full bg-gray-50 border-none rounded-lg p-3 outline-none"
+              className={getInputClassName(formData.city)}
             />
+            {showErrors && !formData.city && (
+              <ErrorMessage message="This field is required" />
+            )}
           </InputCard>
 
           {/* Address & Pincode */}
@@ -391,21 +479,29 @@ const FormBody = () => {
               value={formData.address}
               onChange={handleInputChange}
               placeholder="Full Address"
-              className="w-full bg-gray-50 border-none rounded-lg p-3 mb-4 outline-none"
+              className={getInputClassName(formData.address) + " mb-4"}
             />
-            <div className="flex items-center space-x-4">
+            {showErrors && !formData.address && (
+              <ErrorMessage message="Full address is required" />
+            )}
+            <div className="flex items-center space-x-4 mt-4">
               <span className="text-gray-700 font-semibold">
                 Pincode <span className="text-red-500">*</span>
               </span>
-              <input
-                required
-                type="text"
-                name="pincode"
-                value={formData.pincode}
-                onChange={handleInputChange}
-                className="w-1/3 bg-gray-50 border-none rounded-lg p-3 outline-none"
-              />
+              <div className="w-1/3">
+                <input
+                  required
+                  type="text"
+                  name="pincode"
+                  value={formData.pincode}
+                  onChange={handleInputChange}
+                  className={getInputClassName(formData.pincode)}
+                />
+              </div>
             </div>
+            {showErrors && !formData.pincode && (
+              <ErrorMessage message="Pincode is required" />
+            )}
           </InputCard>
 
           {/* Google Maps Link */}
@@ -419,13 +515,24 @@ const FormBody = () => {
           >
             <input
               required
-              type="text"
+              type="url"
               name="googleMapsLink"
               value={formData.googleMapsLink}
               onChange={handleInputChange}
-              placeholder="Your answer"
-              className="w-full bg-gray-50 border-none rounded-lg p-3 outline-none"
+              placeholder="https://maps.google.com/..."
+              className={getInputClassName(
+                formData.googleMapsLink,
+                URL_REGEX.test(formData.googleMapsLink),
+              )}
             />
+            {showErrors && !formData.googleMapsLink && (
+              <ErrorMessage message="This field is required" />
+            )}
+            {showErrors &&
+              formData.googleMapsLink &&
+              !URL_REGEX.test(formData.googleMapsLink) && (
+                <ErrorMessage message="Please enter a valid URL (e.g., https://...)" />
+              )}
           </InputCard>
 
           {/* Venue Type */}
@@ -436,54 +543,68 @@ const FormBody = () => {
               </>
             }
           >
-            {[
-              "Cafes",
-              "Sports facilities/arena",
-              "Dance studio",
-              "Music studio",
-              "I have a space and I want to transform it into an activity arena",
-              "Theatre studio",
-              "Club/Bar",
-              "Restaurant",
-              "Cafe Chain",
-              "Restaurant Chain",
-              "Co-working space",
-              "Co-living space/Hotel/Hostel",
-            ].map((opt) => (
-              <RadioOption
-                key={opt}
-                name="venueType"
-                label={opt}
-                value={opt}
-                onChange={(e) => setVenueType(e.target.value)}
-                checked={venueType === opt}
-              />
-            ))}
+            <div
+              className={`space-y-1 p-2 rounded-xl transition-colors ${showErrors && !venueType ? "bg-red-50" : ""}`}
+            >
+              {[
+                "Cafes",
+                "Sports facilities/arena",
+                "Dance studio",
+                "Music studio",
+                "I have a space and I want to transform it into an activity arena",
+                "Theatre studio",
+                "Club/Bar",
+                "Restaurant",
+                "Cafe Chain",
+                "Restaurant Chain",
+                "Co-working space",
+                "Co-living space/Hotel/Hostel",
+              ].map((opt) => (
+                <RadioOption
+                  key={opt}
+                  name="venueType"
+                  label={opt}
+                  value={opt}
+                  onChange={(e) => setVenueType(e.target.value)}
+                  checked={venueType === opt}
+                />
+              ))}
 
-            {/* Other Option */}
-            <div className="flex items-center space-x-2 mt-2">
-              <input
-                type="radio"
-                name="venueType"
-                value="Other"
-                checked={venueType === "Other"}
-                onChange={(e) => setVenueType(e.target.value)}
-                className="h-5 w-5 text-pink-600"
-                required
-              />
-              <span className="text-gray-600">Other:</span>
-              <input
-                type="text"
-                placeholder="Please specify"
-                value={otherVenueType}
-                onChange={(e) => {
-                  setOtherVenueType(e.target.value);
-                  setVenueType("Other");
-                }}
-                className="border-b border-gray-300 focus:border-pink-500 outline-none flex-1"
-                required={venueType === "Other"}
-              />
+              {/* Other Option */}
+              <div className="flex items-center space-x-2 mt-2">
+                <input
+                  type="radio"
+                  name="venueType"
+                  value="Other"
+                  checked={venueType === "Other"}
+                  onChange={(e) => setVenueType(e.target.value)}
+                  className="h-5 w-5 text-pink-600"
+                  required
+                />
+                <span className="text-gray-600">Other:</span>
+                <input
+                  type="text"
+                  placeholder="Please specify"
+                  value={otherVenueType}
+                  onChange={(e) => {
+                    setOtherVenueType(e.target.value);
+                    setVenueType("Other");
+                  }}
+                  className={`border-b focus:border-blue-500 outline-none flex-1 ${
+                    showErrors && venueType === "Other" && !otherVenueType
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                  required={venueType === "Other"}
+                />
+              </div>
             </div>
+            {showErrors && !venueType && (
+              <ErrorMessage message="Please select a venue type" />
+            )}
+            {showErrors && venueType === "Other" && !otherVenueType && (
+              <ErrorMessage message="Please specify your venue type" />
+            )}
           </InputCard>
 
           {/* Capacity */}
@@ -495,23 +616,30 @@ const FormBody = () => {
               </>
             }
           >
-            {[
-              "Up to 10",
-              "10 - 20 people",
-              "20 - 30 people",
-              "30 - 50 people",
-              "50 - 100 people",
-              "100+",
-            ].map((opt) => (
-              <RadioOption
-                key={opt}
-                name="capacity"
-                label={opt}
-                value={opt}
-                onChange={(e) => setCapacity(e.target.value)}
-                checked={capacity === opt}
-              />
-            ))}
+            <div
+              className={`space-y-1 p-2 rounded-xl transition-colors ${showErrors && !capacity ? "bg-red-50" : ""}`}
+            >
+              {[
+                "Up to 10",
+                "10 - 20 people",
+                "20 - 30 people",
+                "30 - 50 people",
+                "50 - 100 people",
+                "100+",
+              ].map((opt) => (
+                <RadioOption
+                  key={opt}
+                  name="capacity"
+                  label={opt}
+                  value={opt}
+                  onChange={(e) => setCapacity(e.target.value)}
+                  checked={capacity === opt}
+                />
+              ))}
+            </div>
+            {showErrors && !capacity && (
+              <ErrorMessage message="Please select capacity" />
+            )}
           </InputCard>
 
           {/* Indoor / Outdoor */}
@@ -522,16 +650,23 @@ const FormBody = () => {
               </>
             }
           >
-            {["Indoor", "Outdoor", "Both"].map((opt) => (
-              <RadioOption
-                key={opt}
-                name="spaceType"
-                label={opt}
-                value={opt}
-                onChange={(e) => setSpaceType(e.target.value)}
-                checked={spaceType === opt}
-              />
-            ))}
+            <div
+              className={`space-y-1 p-2 rounded-xl transition-colors ${showErrors && !spaceType ? "bg-red-50" : ""}`}
+            >
+              {["Indoor", "Outdoor", "Both"].map((opt) => (
+                <RadioOption
+                  key={opt}
+                  name="spaceType"
+                  label={opt}
+                  value={opt}
+                  onChange={(e) => setSpaceType(e.target.value)}
+                  checked={spaceType === opt}
+                />
+              ))}
+            </div>
+            {showErrors && !spaceType && (
+              <ErrorMessage message="Please select space type" />
+            )}
           </InputCard>
 
           {/* Photos/Videos link */}
@@ -545,13 +680,24 @@ const FormBody = () => {
           >
             <input
               required
-              type="text"
+              type="url"
               name="photosVideosLink"
               value={formData.photosVideosLink}
               onChange={handleInputChange}
-              placeholder="Your answer"
-              className="w-full bg-gray-50 border-none rounded-lg p-3 outline-none"
+              placeholder="https://example.com/photos"
+              className={getInputClassName(
+                formData.photosVideosLink,
+                URL_REGEX.test(formData.photosVideosLink),
+              )}
             />
+            {showErrors && !formData.photosVideosLink && (
+              <ErrorMessage message="This field is required" />
+            )}
+            {showErrors &&
+              formData.photosVideosLink &&
+              !URL_REGEX.test(formData.photosVideosLink) && (
+                <ErrorMessage message="Please enter a valid URL (e.g., https://...)" />
+              )}
           </InputCard>
 
           {/* Availability */}
@@ -563,17 +709,24 @@ const FormBody = () => {
               </>
             }
           >
-            {["Weekdays", "Weekends", "Both", "Depends on booking"].map(
-              (opt) => (
-                <RadioOption
-                  key={opt}
-                  name="availability"
-                  label={opt}
-                  value={opt}
-                  onChange={(e) => setAvailability(e.target.value)}
-                  checked={availability === opt}
-                />
-              ),
+            <div
+              className={`space-y-1 p-2 rounded-xl transition-colors ${showErrors && !availability ? "bg-red-50" : ""}`}
+            >
+              {["Weekdays", "Weekends", "Both", "Depends on booking"].map(
+                (opt) => (
+                  <RadioOption
+                    key={opt}
+                    name="availability"
+                    label={opt}
+                    value={opt}
+                    onChange={(e) => setAvailability(e.target.value)}
+                    checked={availability === opt}
+                  />
+                ),
+              )}
+            </div>
+            {showErrors && !availability && (
+              <ErrorMessage message="Please select availability" />
             )}
           </InputCard>
 
@@ -585,16 +738,23 @@ const FormBody = () => {
               </>
             }
           >
-            {["Yes", "No", "I manage it"].map((opt) => (
-              <RadioOption
-                key={opt}
-                name="ownership"
-                label={opt}
-                value={opt}
-                onChange={(e) => setOwnership(e.target.value)}
-                checked={ownership === opt}
-              />
-            ))}
+            <div
+              className={`space-y-1 p-2 rounded-xl transition-colors ${showErrors && !ownership ? "bg-red-50" : ""}`}
+            >
+              {["Yes", "No", "I manage it"].map((opt) => (
+                <RadioOption
+                  key={opt}
+                  name="ownership"
+                  label={opt}
+                  value={opt}
+                  onChange={(e) => setOwnership(e.target.value)}
+                  checked={ownership === opt}
+                />
+              ))}
+            </div>
+            {showErrors && !ownership && (
+              <ErrorMessage message="Please select ownership status" />
+            )}
           </InputCard>
 
           {/* Additional Notes */}
@@ -610,17 +770,24 @@ const FormBody = () => {
           </InputCard>
 
           {/* Confirmation */}
-          <div className="flex items-center space-x-3 py-4">
+          <div
+            className={`flex items-center space-x-3 py-4 px-2 rounded-xl transition-colors ${showErrors && !isAgreed ? "bg-red-50" : ""}`}
+          >
             <input
               type="checkbox"
               required
-              className="h-5 w-5 rounded border-gray-300 text-pink-600 focus:ring-pink-500"
+              checked={isAgreed}
+              onChange={(e) => setIsAgreed(e.target.checked)}
+              className="h-5 w-5 rounded border-gray-300 text-pink-600 focus:ring-blue-500"
             />
             <span className="text-gray-700 text-sm">
               I confirm the information provided is accurate.{" "}
               <span className="text-red-500">*</span>
             </span>
           </div>
+          {showErrors && !isAgreed && (
+            <ErrorMessage message="Please confirm that the information is accurate" />
+          )}
 
           <button
             type="submit"
@@ -654,9 +821,12 @@ const FormBody = () => {
                 <X size={24} />
               </button>
               <div className="flex flex-col items-center text-center">
-                <img
+                <Image
                   src="/venue-partner/Form-Submitted.svg"
                   alt="Success"
+                  width={80}
+                  height={80}
+                  unoptimized
                   className="w-20 h-20 mb-6"
                 />
                 <p className="text-gray-700 font-medium">

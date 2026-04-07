@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { REVIEW_DATA } from "@/Data/Home"; // Using your existing data
 import { Navigation, Pagination, A11y, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,8 +12,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export default function StoriesFromCommunity() {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const [prevEl, setPrevEl] = useState(null);
+  const [nextEl, setNextEl] = useState(null);
 
   // Fallback data if REVIEW_DATA doesn't have the exact fields from the image
   const fallbackData = [
@@ -73,12 +73,12 @@ export default function StoriesFromCommunity() {
               disableOnInteraction: false,
             }}
             navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
+              prevEl: prevEl,
+              nextEl: nextEl,
             }}
             onBeforeInit={(swiper) => {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
+              swiper.params.navigation.prevEl = prevEl;
+              swiper.params.navigation.nextEl = nextEl;
             }}
             breakpoints={{
               640: { slidesPerView: 1 },
@@ -130,6 +130,7 @@ export default function StoriesFromCommunity() {
                               alt={item?.name}
                               fill
                               className="object-cover"
+                              sizes="56px"
                             />
                           </div>
                           <div className="flex flex-col">
@@ -152,13 +153,13 @@ export default function StoriesFromCommunity() {
           {/* Custom Navigation Arrows at Bottom Center */}
           <div className="flex items-center justify-center gap-5 mt-4">
             <button
-              ref={prevRef}
+              ref={(node) => setPrevEl(node)}
               className="w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors shadow-sm"
             >
               <ArrowLeft size={20} />
             </button>
             <button
-              ref={nextRef}
+              ref={(node) => setNextEl(node)}
               className="w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors shadow-sm"
             >
               <ArrowRight size={20} />

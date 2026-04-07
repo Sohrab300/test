@@ -4,7 +4,7 @@ import Head from "next/head";
 const PrivacyPolicy = () => {
   // Style constants to match the visual hierarchy of the image
   const sectionTitle =
-    "text-2xl font-bold text-[#333333] mt-8 mb-3 poppins-text";
+    "text-2xl font-semibold text-[#333333] mt-8 mb-3 poppins-text";
   const paragraphClass =
     "text-[#4d4d4d] leading-relaxed mb-4 text-[18px] poppins-text";
   const listClass =
@@ -20,11 +20,11 @@ const PrivacyPolicy = () => {
       <div className="max-w-7xl mx-auto px-6 py-20 lg:py-32">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl text-center md:text-4xl font-bold text-[#333333] poppins-text my-16">
+          <h1 className="text-4xl md:text-5xl text-center md:text-4xl font-bold text-[#333333] poppins-text my-16">
             Privacy Policy
           </h1>
           <p className="text-sm text-gray-600 font-medium poppins-text ml-3">
-            Effective Date: 14.03.2025
+            Effective Date: 14.03.2026
           </p>
         </div>
 

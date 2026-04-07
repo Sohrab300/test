@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 
 const VenuePartner = () => {
@@ -14,6 +15,8 @@ const VenuePartner = () => {
       title: "Attract More Visitors",
       desc: "Get discovered by communities actively looking for venues to host meetups, workshops, and social gatherings. Bring more people to your space through engaging community-driven events.",
       img: "/venue-partner/vps3-1.png",
+      imageWidth: 588,
+      imageHeight: 372,
       gradient: purpleGradient,
       defaultWide: false,
       row: 1,
@@ -25,6 +28,8 @@ const VenuePartner = () => {
       title: "Reach the Right Audience",
       desc: "Connect with people who share hobbies, interests, and activities happening around your venue. Engage with a highly relevant audience that values experiences and social interactions.",
       img: "/venue-partner/vps3-2.png",
+      imageWidth: 553,
+      imageHeight: 359,
       gradient: orangeGradient,
       defaultWide: true,
       row: 1,
@@ -35,6 +40,8 @@ const VenuePartner = () => {
       title: "Showcase Your Venue",
       desc: "Feature your space inside the Minglewise app where club hosts and community members explore event locations. Highlight your venue's ambience, facilities, and unique experiences to potential visitors.",
       img: "/venue-partner/vps3-3.png",
+      imageWidth: 432,
+      imageHeight: 418,
       gradient: orangeGradient,
       defaultWide: true,
       row: 2,
@@ -45,6 +52,8 @@ const VenuePartner = () => {
       title: "Grow Through Community Events",
       desc: "Collaborate with club hosts to organize recurring events and turn your venue into a popular community hub. Build long-term relationships with communities that bring regular engagement to your venue.",
       img: "/venue-partner/vps3-4.png",
+      imageWidth: 411,
+      imageHeight: 354,
       gradient: purpleGradient,
       defaultWide: false,
       row: 2,
@@ -139,9 +148,13 @@ const ExpandableCard = ({ data, active, onHover }) => {
         w-full md:w-[55%] h-full
       `}
       >
-        <img
+        <Image
           src={data.img}
           alt={data.title}
+          width={data.imageWidth}
+          height={data.imageHeight}
+          sizes="(min-width: 768px) 55vw, 100vw"
+          unoptimized
           className="max-w-full max-h-[100%] object-contain"
         />
       </div>

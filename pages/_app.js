@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }) {
 
   const [pageName, setPageName] = useState("");
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   // useEffect(() => {
@@ -40,12 +40,6 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     TagManager.initialize({ gtmId: "G-1GDKXS7R5W" });
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(true);
-    }, 2000);
   }, []);
 
   const stateInfo = {

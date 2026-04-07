@@ -76,10 +76,13 @@ export default function AboutAS() {
                   shadow-sm hover:shadow active:scale-95"
               >
                 View Website
-                <img
+                <Image
                   src="/about-us/resize.svg"
                   className="pl-2 w-7 h-7"
                   alt=""
+                  width={28}
+                  height={28}
+                  unoptimized
                 />
               </button>
             </a>

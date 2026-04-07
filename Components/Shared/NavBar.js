@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -44,12 +45,12 @@ const Navbar = () => {
   const handleJoinClick = (e) => {
     e.preventDefault();
     if (router.pathname === "/") {
-      const element = document.getElementById("newsletter-signup");
+      const element = document.getElementById("download-the-app");
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      router.push("/#newsletter-signup");
+      router.push("/#download-the-app");
     }
     setSidebarOpen(false);
   };
@@ -75,9 +76,12 @@ const Navbar = () => {
           {/* Logo Section */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-gray-100 shadow-sm overflow-hidden">
-              <img
+              <Image
                 src="/assets/logo/mingle.webp"
                 alt="MingleWise Logo"
+                width={32}
+                height={32}
+                priority
                 className="w-7 h-7 md:w-8 md:h-8 object-contain"
               />
             </div>
@@ -88,7 +92,7 @@ const Navbar = () => {
                 MingleWise
                 <span className="text-[10px] align-top ml-0.5">®</span>
               </h1>
-              <p className="hidden xs:block text-[9px] md:text-[10px] text-[#C56183] font-medium tracking-tight mt-0.5">
+              <p className="text-[9px] md:text-[10px] text-[#C56183] font-medium tracking-tight mt-0.5">
                 Find Your Tribe. Live Your Passion.
               </p>
             </div>

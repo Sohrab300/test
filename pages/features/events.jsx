@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDownToLine } from "lucide-react";
 import DownloadApp from "@/Components/Home/DownloadApp";
@@ -21,21 +22,27 @@ const ProfileFeatures = () => {
       description:
         "Explore upcoming events hosted by clubs and communities. Find activities happening around you. Never miss something exciting.",
       image: "/features/em-1.png",
-      reverse: false,
+      imageWidth: 507,
+      imageHeight: 810,
+      reverse: true,
     },
     {
       title: "Explore and Join Events",
       description:
         "Join meetups, hobby sessions, and group activities. Enjoy your interests with like-minded people. Turn simple activities into fun experiences.",
       image: "/features/em-2.png",
-      reverse: true,
+      imageWidth: 452,
+      imageHeight: 810,
+      reverse: false,
     },
     {
       title: "Host Your Own Events",
       description:
         "Create and organize events for your club. Plan activities that bring members together. Make every meetup memorable.",
       image: "/features/em-3.png",
-      reverse: false,
+      imageWidth: 345,
+      imageHeight: 810,
+      reverse: true,
     },
   ];
 
@@ -48,7 +55,7 @@ const ProfileFeatures = () => {
       <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
         {/* Main Header */}
         <div className="text-center my-20">
-          <h1 className="text-4xl md:text-5xl font-bold poppins-text">
+          <h1 className="text-5xl md:text-6xl font-bold poppins-text">
             <span className="text-[#F0015F]">Events &</span>{" "}
             <span className="text-[#444444]">Meetups</span>
           </h1>
@@ -71,7 +78,7 @@ const ProfileFeatures = () => {
                 transition={{ duration: 0.6 }}
                 className="w-full md:w-1/2 flex flex-col items-start text-left"
               >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#222222] mb-6 leading-tight poppins-text">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#222222] mb-6 leading-tight poppins-text">
                   {feature.title}
                 </h2>
                 <p className="text-gray-600 text-lg md:text-xl leading-relaxed mb-8 max-w-lg poppins-text">
@@ -90,7 +97,7 @@ const ProfileFeatures = () => {
                 </button>
               </motion.div>
 
-              {/* Phone Image */}
+              {/* Fixed Image Container */}
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -98,11 +105,19 @@ const ProfileFeatures = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="w-full md:w-1/2 flex justify-center"
               >
-                <div className="relative w-full max-w-[320px] md:max-w-[420px]">
-                  <img
+                {/* 
+                  1. Defined a fixed height (h-[500px] or h-[600px])
+                  2. aspect-[9/16] ensures they all follow a phone ratio
+                  3. "object-contain" prevents stretching 
+                */}
+                <div className="relative w-full aspect-[9/16] h-[500px] md:h-[600px]">
+                  <Image
                     src={feature.image}
                     alt={feature.title}
-                    className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+                    fill
+                    sizes="(min-width: 768px) 400px, 320px"
+                    unoptimized
+                    className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
                   />
                 </div>
               </motion.div>

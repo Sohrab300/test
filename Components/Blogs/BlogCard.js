@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
+const imageLoader = ({ src }) => src;
+
 const BlogCard = ({ blog }) => {
   const router = useRouter();
   const {
@@ -95,10 +97,14 @@ const BlogCard = ({ blog }) => {
           )}
 
           {/* Actual image */}
-          <img
+          <Image
             className={`absolute inset-0 w-full h-full object-cover ${
               loaded ? "opacity-100" : "opacity-0"
             }`}
+            fill
+            loader={imageLoader}
+            sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 100vw"
+            unoptimized
             src={thumbNail}
             alt={title}
             onLoad={handleImageLoad}

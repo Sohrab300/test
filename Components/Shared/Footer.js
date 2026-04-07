@@ -43,9 +43,12 @@ const Footer = () => {
     <footer className="relative w-full text-white overflow-hidden bg-gradient-to-r from-[#333333] to-[#1E2124] pt-12 px-6 pb-3">
       {/* Centered Background Image Logo */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <img
+        <Image
           src="/footer-bg.png"
           alt="background logo"
+          width={464}
+          height={412}
+          unoptimized
           className="w-auto h-[100%] object-contain opacity-50"
         />
       </div>
@@ -98,7 +101,11 @@ const Footer = () => {
               <ul className="flex flex-col gap-2">
                 {companyLinks.map((link) => (
                   <li key={link.href} className="whitespace-nowrap">
-                    <Link href={link.href} className={linkClasses(link.href)}>
+                    <Link
+                      href={link.href}
+                      className={linkClasses(link.href)}
+                      scroll={true}
+                    >
                       {link.name}
                     </Link>
                   </li>

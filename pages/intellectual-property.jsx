@@ -3,7 +3,7 @@ import Head from "next/head";
 const IntellectualProperty = () => {
   // Styling constants to match the image
   const sectionHeading =
-    "text-2xl font-bold text-[#333333] mt-10 mb-4 poppins-text";
+    "text-2xl font-semibold text-[#333333] mt-10 mb-4 poppins-text";
   const paragraphClass =
     "text-[#4d4d4d] leading-[1.8] mb-6 text-[18px] poppins-text text-justify md:text-left";
   const boldLabel = "font-bold text-[#333333]";
@@ -25,9 +25,9 @@ const IntellectualProperty = () => {
           <p className={paragraphClass}>
             All Content included on the Website, unless uploaded by Users, is
             the property of AppSynergies Ltd, our affiliates or other relevant
-            third parties. In these terms and conditions, Content means any
-            text, graphics, images, audio, video, software, data compilations,
-            page layout, underlying code and software and any other form of
+            third parties. In these terms of use, Content means any text,
+            graphics, images, audio, video, software, data compilations, page
+            layout, underlying code and software and any other form of
             information capable of being stored in a computer that appears on or
             forms part of this Website, including any such content uploaded by
             Users. By continuing to use the Website you acknowledge that such

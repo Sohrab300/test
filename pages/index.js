@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../Components/Home/Header";
 import FolksLovesUs from "@/Components/Home/FolksLovesUs";
 import DownloadApp from "@/Components/Home/DownloadApp";
@@ -290,23 +290,6 @@ export default function Home() {
           <div id="usp">
             <USP />
           </div>
-          {/* <div id="why-create-profile">
-            <WhyMingleWise />{" "}
-          </div>
-          <div id="dating-profile-feature">
-            {" "}
-            <DatingProfile />
-          </div>
-          <div id="professional-networking-features">
-            {" "}
-            <ProfessionalNetworking />
-          </div>
-          <div id="what-makes-us-loved">
-            <WhatMakesUsLove />
-          </div>
-          <div id="in-app-features">
-            <InAppFeatures />
-          </div> */}
           <div id="reviews">
             <FolksLovesUs />
           </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDownToLine } from "lucide-react";
 import DownloadApp from "@/Components/Home/DownloadApp";
@@ -21,6 +22,8 @@ const ClubsFeatures = () => {
       description:
         "Connect with people who share your hobbies and passions. Join activities with individuals who truly understand your interests. Build friendships through shared experiences and conversations.",
       image: "/features/ss-1.png",
+      imageWidth: 380,
+      imageHeight: 810,
       reverse: false,
     },
     {
@@ -28,6 +31,8 @@ const ClubsFeatures = () => {
       description:
         "Minglewise encourages respectful and friendly interactions. Be part of a welcoming and supportive community. Feel comfortable engaging with others on the platform.",
       image: "/features/ss-2.png",
+      imageWidth: 482,
+      imageHeight: 810,
       reverse: true,
     },
     {
@@ -35,6 +40,8 @@ const ClubsFeatures = () => {
       description:
         "Access helpful safety tips for positive and secure interactions. Learn best practices for meeting people and attending events safely. Stay informed to enjoy a safe and worry-free experience.",
       image: "/features/ss-3.png",
+      imageWidth: 500,
+      imageHeight: 810,
       reverse: false,
     },
     {
@@ -42,6 +49,8 @@ const ClubsFeatures = () => {
       description:
         "An AI chatbot helps guide users with safety tips and platform support. Get instant help for resolving any issues or queries. AI-assisted moderation helps maintain a safe and respectful community.",
       image: "/features/ss-4.png",
+      imageWidth: 509,
+      imageHeight: 810,
       reverse: true,
     },
   ];
@@ -55,7 +64,7 @@ const ClubsFeatures = () => {
       <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
         {/* Main Header */}
         <div className="text-center my-20">
-          <h1 className="text-4xl md:text-5xl font-bold poppins-text">
+          <h1 className="text-5xl md:text-6xl font-bold poppins-text">
             <span className="text-[#F0015F]">Social Experience &</span>{" "}
             <span className="text-[#444444]">Safety</span>
           </h1>
@@ -78,7 +87,7 @@ const ClubsFeatures = () => {
                 transition={{ duration: 0.6 }}
                 className="w-full md:w-1/2 flex flex-col items-start text-left"
               >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#222222] mb-6 leading-tight poppins-text">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#222222] mb-6 leading-tight poppins-text">
                   {feature.title}
                 </h2>
                 <p className="text-gray-600 text-lg md:text-xl leading-relaxed mb-8 max-w-lg poppins-text">
@@ -97,19 +106,27 @@ const ClubsFeatures = () => {
                 </button>
               </motion.div>
 
-              {/* Phone Image */}
+              {/* Fixed Image Container */}
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="w-full md:w-1/2 flex justify-center"
+                className="w-full md:w-1/2 flex justify-end items-end"
               >
-                <div className="relative w-full max-w-[320px] md:max-w-[420px]">
-                  <img
+                {/* 
+                  1. Defined a fixed height (h-[500px] or h-[600px])
+                  2. aspect-[9/16] ensures they all follow a phone ratio
+                  3. "object-contain" prevents stretching 
+                */}
+                <div className="relative w-full aspect-[9/16] h-[500px] md:h-[600px]">
+                  <Image
                     src={feature.image}
                     alt={feature.title}
-                    className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+                    fill
+                    sizes="(min-width: 768px) 400px, 320px"
+                    unoptimized
+                    className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
                   />
                 </div>
               </motion.div>

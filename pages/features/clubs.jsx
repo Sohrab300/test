@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDownToLine } from "lucide-react";
 import DownloadApp from "@/Components/Home/DownloadApp";
@@ -55,14 +56,14 @@ const ClubsFeatures = () => {
       <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
         {/* Main Header */}
         <div className="text-center my-20">
-          <h1 className="text-4xl md:text-5xl font-bold poppins-text">
+          <h1 className="text-5xl md:text-6xl font-bold poppins-text">
             <span className="text-[#F0015F]">Clubs &</span>{" "}
             <span className="text-[#444444]">Communities</span>
           </h1>
         </div>
 
         {/* Feature Sections */}
-        <div className="space-y-24 md:space-y-10">
+        <div className="space-y-24 md:space-y-32">
           {featureData.map((feature, index) => (
             <div
               key={index}
@@ -78,14 +79,13 @@ const ClubsFeatures = () => {
                 transition={{ duration: 0.6 }}
                 className="w-full md:w-1/2 flex flex-col items-start text-left"
               >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#222222] mb-6 leading-tight poppins-text">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#222222] mb-6 leading-tight poppins-text">
                   {feature.title}
                 </h2>
                 <p className="text-gray-600 text-lg md:text-xl leading-relaxed mb-8 max-w-lg poppins-text">
                   {feature.description}
                 </p>
 
-                {/* Download Button */}
                 <button
                   onClick={handleDownloadClick}
                   className={`${downloadGradient} text-white px-5 py-2.5 rounded-2xl flex items-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-lg group`}
@@ -97,7 +97,7 @@ const ClubsFeatures = () => {
                 </button>
               </motion.div>
 
-              {/* Phone Image */}
+              {/* Fixed Image Container */}
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -105,11 +105,19 @@ const ClubsFeatures = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="w-full md:w-1/2 flex justify-center"
               >
-                <div className="relative w-full max-w-[320px] md:max-w-[420px]">
-                  <img
+                {/* 
+                  1. Defined a fixed height (h-[500px] or h-[600px])
+                  2. aspect-[9/16] ensures they all follow a phone ratio
+                  3. "object-contain" prevents stretching 
+                */}
+                <div className="relative w-full aspect-[9/16] h-[500px] md:h-[600px]">
+                  <Image
                     src={feature.image}
                     alt={feature.title}
-                    className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+                    fill
+                    sizes="(min-width: 768px) 400px, 320px"
+                    unoptimized
+                    className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
                   />
                 </div>
               </motion.div>
@@ -118,8 +126,7 @@ const ClubsFeatures = () => {
         </div>
       </div>
 
-      {/* This is the target for the scroll - You can place your DownloadApp component here */}
-      <div id="download-app" className="">
+      <div id="download-app">
         <DownloadApp />
       </div>
     </div>

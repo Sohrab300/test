@@ -65,7 +65,7 @@ const FAQSection = () => {
       {
         question: "Are Minglewise clubs free to join?",
         answer:
-          "Most clubs on Minglewise are free to join. However, some clubs or events may have participation fees depending on the activity organized by the host.",
+          "Most clubs on Minglewise are free to join. However, some events may have participation fees depending on the activity organized by the host.",
       },
       {
         question: "Can I join multiple clubs at the same time?",
@@ -80,7 +80,7 @@ const FAQSection = () => {
       {
         question: "Can clubs host both online and offline events?",
         answer:
-          "Yes, clubs can organize both virtual and in-person events depending on the activity and the preferences of the host.",
+          "No, clubs can organize in-person events depending on the activity and the preferences of the host.",
       },
       {
         question: "How do I stay updated about club events?",

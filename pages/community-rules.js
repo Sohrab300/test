@@ -4,7 +4,7 @@ import Head from "next/head";
 const CommunityRules = () => {
   // Styling constants for consistency
   const sectionTitle =
-    "text-2xl font-bold text-[#333333] mt-8 mb-3 poppins-text";
+    "text-2xl font-semibold text-[#333333] mt-8 mb-3 poppins-text";
   const paragraphClass =
     "text-[#4d4d4d] leading-relaxed mb-4 text-[18px] poppins-text";
   const listClass =

@@ -74,11 +74,6 @@ export const IN_APP_FEATURES = [
     title: "Elite Badge",
     info: "Here, by using this feature you can get discounts on in-app purchases like meet, speed, gift and lime light.",
   },
-  // {
-  //   logo: "/assets/in-app-features/stories.svg",
-  //   title: "Stories",
-  //   info: "Post your story in the form photos or videos. Also, to make your stories more fun and interactive.",
-  // },
   {
     logo: "/assets/in-app-features/advanced-filter.svg",
     title: "Advanced Filters",
@@ -89,21 +84,11 @@ export const IN_APP_FEATURES = [
     title: "Mingle Gifts",
     info: "Buy virtual gifts such as flowers, chocolate, teddy, cake, ring, necklace etc using M coins in your account.",
   },
-  // {
-  //   logo: "/assets/in-app-features/speed-networking.svg",
-  //   title: "Speed Networking",
-  //   info: "Speed networking sessions, where you’ll have series of short conversations lasting for 3 minutes each with 5 people.",
-  // },
   {
     logo: "/assets/in-app-features/no-time-limit.svg",
     title: "No Time Limit",
     info: "By using this feature, your matches and messages won’t get disappeared after a period of time.",
   },
-  // {
-  //   logo: "/assets/in-app-features/mingle-mixer.svg",
-  //   title: "Mingle Mixer",
-  //   info: "Register for various mingle mixers in the real world and meet real through app ",
-  // },
   {
     logo: "/assets/in-app-features/read-receipts.svg",
     title: "Read Receipts",
@@ -114,11 +99,6 @@ export const IN_APP_FEATURES = [
     title: "Limelight",
     info: "By using this feature, top profiles will be visible to you. By using this, you explore top profiles.",
   },
-  // {
-  //   logo: "/assets/in-app-features/converse.svg",
-  //   title: "Converse",
-  //   info: "Have a formal chat with various professionals. You can find this feature in ‘mingle-pro’ option.",
-  // },
   {
     logo: "/assets/in-app-features/double-triple.svg",
     title: "Double/ Triple Daily Profiles",
@@ -307,6 +287,6 @@ export const COMMUNITY_RULES_DATA = [
   {
     question: "Illegal Actions With The Service",
     answer:
-      "You must not be engaged in an exchange of coins or gifts for any items or services which usually has any price or value. Please do nothing that we, your bank or any third party may qualify as exchange coins or gifts for something that has any value. More details are available in MingleWise Paid Service Terms and Conditions.",
+      "You must not be engaged in an exchange of coins or gifts for any items or services which usually has any price or value. Please do nothing that we, your bank or any third party may qualify as exchange coins or gifts for something that has any value. More details are available in MingleWise Paid Service Terms of Use.",
   },
 ];

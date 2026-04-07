@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Send } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -136,7 +137,14 @@ const Chatbot = () => {
 			<div className="flex-1 overflow-auto">
 				{messages.length === 0 && (
 					<div className="flex flex-col space-y-2 items-center justify-center h-full bg-gray-100">
-						<img src="/chat.png" className="w-16 h-16" />
+						<Image
+							src="/chat.png"
+							alt=""
+							width={64}
+							height={64}
+							className="w-16 h-16"
+							unoptimized
+						/>
 						<h1 className="text-gray-400 text-xl pt-3">
 							You are all set!
 						</h1>
@@ -156,12 +164,13 @@ const Chatbot = () => {
 					>
 						{msg.sender === "bot" && (
 							<div className="bg-white rounded-full border mx-2">
-								<img
+								<Image
 									className="cursor-pointer"
 									width={40}
 									height={40}
 									src="/assets/logo/mingle.webp"
 									alt="logo"
+									unoptimized
 								/>
 							</div>
 						)}
@@ -182,10 +191,13 @@ const Chatbot = () => {
 							</div>
 						</div>
 						{msg.sender === "user" && (
-							<img
+							<Image
 								src="/user.svg"
 								alt="User Avatar"
+								width={40}
+								height={40}
 								className="w-10 h-10 ml-2 rounded-full"
+								unoptimized
 							/>
 						)}
 					</div>
@@ -193,12 +205,13 @@ const Chatbot = () => {
 
 				{isLoading && (
 					<div className="my-2 flex items-center ml-4">
-						<img
+						<Image
 							className="cursor-pointer border rounded-full"
 							width={40}
 							height={40}
 							src="/assets/logo/mingle.webp"
 							alt="logo"
+							unoptimized
 						/>
 						<div className="flex rounded-full ml-5">
 							<div className="dots"></div>

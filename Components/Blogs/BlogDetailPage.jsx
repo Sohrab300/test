@@ -1,4 +1,7 @@
+import Image from "next/image";
 import React, { useState } from "react";
+
+const imageLoader = ({ src }) => src;
 
 function BlogDetailPage({ blog }) {
   const {
@@ -68,14 +71,10 @@ function BlogDetailPage({ blog }) {
     let shareUrl = "";
     switch (platform) {
       case "facebook":
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-          window.location.href,
-        )}`;
+        shareUrl = `https://www.facebook.com/share/1Cu3WLv3WC/`;
         break;
       case "twitter":
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-          blogTitle,
-        )}&url=${encodeURIComponent(window.location.href)}`;
+        shareUrl = `https://x.com/minglewise?s=20`;
         break;
 
       default:
@@ -202,14 +201,17 @@ function BlogDetailPage({ blog }) {
               style={{ zIndex: 1 }}
             ></div>
           )}
-          <img
+          <Image
             className={`rounded-t object-cover w-full h-auto ${
               loaded ? "opacity-100" : "opacity-0"
             }`}
+            loader={imageLoader}
             src={thumbNail}
-            alt={"test"}
+            alt={title}
+            width={1200}
             height={360}
-            width={"auto"}
+            sizes="100vw"
+            unoptimized
             onLoad={handleImageLoad}
           />
           <div className="mt-8 max-w-5xl">

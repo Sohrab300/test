@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDownToLine } from "lucide-react";
 import DownloadApp from "@/Components/Home/DownloadApp";
@@ -21,6 +22,8 @@ const ProfileFeatures = () => {
       description:
         "Set up your profile by adding your interests, hobbies, and preferences. This helps Minglewise show clubs and events that match your vibe. Start building your personal community space.",
       image: "/features/pp-1.png", // Ensure these are in your public folder
+      imageWidth: 418,
+      imageHeight: 810,
       reverse: false,
     },
     {
@@ -28,13 +31,17 @@ const ProfileFeatures = () => {
       description:
         "Explore clubs and events related to the hobbies you love. Find communities that share the same passions. Discover something exciting every time you explore.",
       image: "/features/pp-2.png",
+      imageWidth: 410,
+      imageHeight: 810,
       reverse: true,
     },
     {
-      title: "Manage Your Preferences",
+      title: "Live the Moments",
       description:
-        "Update your profile details and interests anytime. Adjust your preferences to refine recommendations. Keep your experience personalized and relevant.",
+        "Dive into unforgettable experiences from your favorite clubs. From electrifying nights to exclusive events—see what’s happening now. Feel the energy, anytime.",
       image: "/features/pp-3.png",
+      imageWidth: 466,
+      imageHeight: 810,
       reverse: false,
     },
   ];
@@ -48,7 +55,7 @@ const ProfileFeatures = () => {
       <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
         {/* Main Header */}
         <div className="text-center my-20">
-          <h1 className="text-4xl md:text-5xl font-bold poppins-text">
+          <h1 className="text-5xl md:text-6xl font-bold poppins-text">
             <span className="text-[#F0015F]">Profile &</span>{" "}
             <span className="text-[#444444]">Personalization</span>
           </h1>
@@ -71,7 +78,7 @@ const ProfileFeatures = () => {
                 transition={{ duration: 0.6 }}
                 className="w-full md:w-1/2 flex flex-col items-start text-left"
               >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#222222] mb-6 leading-tight poppins-text">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#222222] mb-6 leading-tight poppins-text">
                   {feature.title}
                 </h2>
                 <p className="text-gray-600 text-lg md:text-xl leading-relaxed mb-8 max-w-lg poppins-text">
@@ -99,9 +106,13 @@ const ProfileFeatures = () => {
                 className="w-full md:w-1/2 flex justify-center"
               >
                 <div className="relative w-full max-w-[320px] md:max-w-[420px]">
-                  <img
+                  <Image
                     src={feature.image}
                     alt={feature.title}
+                    width={feature.imageWidth}
+                    height={feature.imageHeight}
+                    sizes="(min-width: 768px) 420px, 320px"
+                    unoptimized
                     className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
                   />
                 </div>

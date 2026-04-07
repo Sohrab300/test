@@ -20,24 +20,16 @@ export default function Header() {
           fill
           priority
           className="object-cover object-top"
-        />
-      </div>
-      {/* 1. Bottom Background Layer */}
-      <div className="absolute bottom-0 left-0 w-full h-[90%] z-10">
-        <Image
-          src="/venue-partner/hero-b.png"
-          alt="Bottom Background"
-          fill
-          className="object-cover object-bottom"
+          sizes="100vw"
         />
       </div>
       {/* 2. Content Layer */}
-      <div className="relative z-30 flex flex-col items-center text-center px-6 max-w-5xl">
+      <div className="relative z-30 flex flex-col items-center text-center px-6 max-w-5xl mt-8">
         <motion.span
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-sm md:text-base font-bold tracking-[0.25em] text-[#3D3D3D] mb-6"
+          className="md:text-[24px] lg:text-[32px] font-medium text-[#3D3D3D] mb-6 font-['Poppins']"
         >
           VENUE PARTNER
         </motion.span>
@@ -46,7 +38,7 @@ export default function Header() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-[900] text-[#3D3D3D] leading-[1.1] tracking-tight"
+          className="text-5xl lg:text-7xl font-[900] text-[#3D3D3D] leading-[1.1] tracking-tight"
         >
           Turn Your Venue Into a <br />
           <span className={textGradient}>Community</span> Hub
@@ -90,6 +82,7 @@ export default function Header() {
           height={600}
           className="w-full h-auto object-contain object-bottom"
           priority
+          sizes="100vw"
         />
       </motion.div>
     </section>

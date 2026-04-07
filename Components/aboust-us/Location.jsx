@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -45,9 +46,12 @@ const Location = () => {
             transition={{ ...transitionStyle, delay: 0.2 }}
             className="relative w-full flex justify-center"
           >
-            <img
+            <Image
               src="/about-us/map.png"
               alt="World Map showing UK and India locations"
+              width={1392}
+              height={658}
+              unoptimized
               className="w-full h-auto object-contain pointer-events-none select-none"
             />
           </motion.div>
@@ -62,9 +66,12 @@ const Location = () => {
             transition={transitionStyle}
             className="bg-white border-2 w-full md:w-[35%] border-[#8A33FD] rounded-[40px] p-10 flex flex-col items-center justify-center text-center shadow-sm min-h-[250px]"
           >
-            <img
+            <Image
               src="/about-us/pin.png"
               alt="Location Pin"
+              width={124}
+              height={124}
+              unoptimized
               className="w-24 h-24 object-contain mb-4"
             />
             <h2 className="text-[#E63946] text-2xl font-black  uppercase w-full">
@@ -80,9 +87,12 @@ const Location = () => {
               className="bg-white border-2 w-1/2 border-[#8A33FD] rounded-tl-[30px] rounded-bl-[30px] p-8 flex flex-col md:flex-row items-center justify-between shadow-sm min-h-[250px]"
             >
               <div className="flex flex-col items-center text-center md:w-[40%]">
-                <img
+                <Image
                   src="/about-us/india-map.png"
                   alt="India Map"
+                  width={125}
+                  height={125}
+                  unoptimized
                   className="w-24 h-24 object-contain mb-4"
                 />
                 <h3 className="text-[#E63946] font-bold text-lg uppercase tracking-wide">
@@ -96,7 +106,7 @@ const Location = () => {
                   400067
                 </p>
                 <a
-                  href="https://maps.google.com"
+                  href="https://www.google.com/maps/place/Orchid+Suburbia/@19.2096925,72.8249702,16z/data=!4m10!1m2!2m1!1sD-1602,+Orchid+Suburbia,+Link+Road,+Kandivali+West,+Mumbai+400067!3m6!1s0x3be7b6cf25574699:0x11f8e40f536d2cee!8m2!3d19.2096925!4d72.8344974!15sCkFELTE2MDIsIE9yY2hpZCBTdWJ1cmJpYSwgTGluayBSb2FkLCBLYW5kaXZhbGkgV2VzdCwgTXVtYmFpIDQwMDA2N1o_Ij1kIDE2MDIgb3JjaGlkIHN1YnVyYmlhIGxpbmsgcm9hZCBrYW5kaXZhbGkgd2VzdCBtdW1iYWkgNDAwMDY3kgESYXBhcnRtZW50X2J1aWxkaW5n4AEA!16s%2Fg%2F1td1hg3d?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noreferrer"
                   className="text-[#3875EA] flex items-center gap-1 font-medium hover:underline text-sm"
@@ -124,9 +134,12 @@ const Location = () => {
               className="bg-white border-2 w-1/2 border-[#8A33FD] rounded-tr-[30px] rounded-br-[30px] p-8 flex flex-col md:flex-row items-center justify-between shadow-sm min-h-[250px]"
             >
               <div className="flex flex-col items-center text-center md:w-[40%]">
-                <img
+                <Image
                   src="/about-us/uk-map.png"
                   alt="UK Map"
+                  width={125}
+                  height={125}
+                  unoptimized
                   className="w-24 h-24 object-contain mb-4"
                 />
                 <h3 className="text-[#E63946] font-bold text-lg uppercase tracking-wide">
@@ -139,7 +152,7 @@ const Location = () => {
                   186 Malvern Avenue, Harrow, HA2 9HD, United Kingdom
                 </p>
                 <a
-                  href="https://maps.google.com"
+                  href="https://www.google.com/maps/place/186+Malvern+Ave,+Harrow+HA2+9HD,+UK/@51.5643377,-0.3810632,17z/data=!3m1!4b1!4m6!3m5!1s0x48766cd3276dc685:0xe149f89f737f66f5!8m2!3d51.5643344!4d-0.3784883!16s%2Fg%2F11rp2nxqdw?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noreferrer"
                   className="text-[#3875EA] flex items-center gap-1 font-medium hover:underline text-sm"

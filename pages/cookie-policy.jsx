@@ -3,7 +3,7 @@ import Head from "next/head";
 
 const CookiePolicy = () => {
   const sectionTitleClass =
-    "text-2xl font-bold text-[#333333] mt-10 mb-4 poppins-text";
+    "text-2xl font-semibold text-[#333333] mt-10 mb-4 poppins-text";
   const subHeadingClass =
     "text-xl font-bold text-[#444444] mt-6 mb-2 poppins-text";
   const paragraphClass =

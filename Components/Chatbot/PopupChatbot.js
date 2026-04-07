@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Chatbot from "./Chatbot";
 import { X } from "lucide-react";
@@ -48,10 +49,13 @@ const PopupChatbot = () => {
 				onClick={toggleChatbot}
 				className="fixed bottom-12 right-10 bg-white rounded-full shadow-md shadow-[#fb775f]"
 			>
-				<img
+				<Image
 					src="/robot.gif"
 					className="w-16 h-16 rounded-full"
 					alt="Chatbot"
+					width={64}
+					height={64}
+					unoptimized
 				/>
 			</button>
 
@@ -63,12 +67,13 @@ const PopupChatbot = () => {
 					<div className="bg-[#8800e1] text-white p-4 flex items-center justify-between space-x-4">
 						<div className="flex items-center space-x-4 ">
 							<div className="bg-white rounded-full shadow-lg drop-shadow-lg">
-								<img
+								<Image
 									className="cursor-pointer"
 									width={40}
 									height={40}
 									src="/assets/logo/mingle.webp"
 									alt="logo"
+									unoptimized
 								/>
 							</div>
 							<h2 className="text-lg font-semibold text-primary">

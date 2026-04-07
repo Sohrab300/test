@@ -96,7 +96,7 @@ const USP = () => {
                     alt={item.label}
                     fill
                     className="object-contain"
-                    priority
+                    sizes="(max-width: 768px) 50vw, 400px"
                   />
                 </div>
               </div>

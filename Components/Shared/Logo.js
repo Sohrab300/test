@@ -1,9 +1,9 @@
+import Image from "next/image";
 import React from "react";
 
 const Logo = () => {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       className="cursor-pointer"
       width={60}
       height={60}

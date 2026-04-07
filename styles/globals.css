@@ -486,3 +486,8 @@ input[type="radio"]:checked + .custom-radio-label .custom-radio-button::after {
   border: 2px solid white;
   color: white;
 }
+
+/* Disable all hover states and pointer events while auto-scrolling */
+body.is-scrolling {
+  pointer-events: none !important;
+}

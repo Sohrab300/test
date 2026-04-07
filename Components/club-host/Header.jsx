@@ -7,26 +7,46 @@ export default function ClubHostHeader() {
   const brandPink = "text-[#E900B0]";
   const buttonGradient = "bg-gradient-to-r from-[#F0015F] to-[#C301EA]";
 
+  const scrollToDownloadapp = (e) => {
+    e.preventDefault();
+    const element = document.getElementById("download-the-app");
+
+    if (element) {
+      // 1. Add a class to body to disable pointer events (hovers)
+      document.body.classList.add("is-scrolling");
+
+      // 2. Perform the scroll
+      element.scrollIntoView({ behavior: "smooth" });
+
+      // 3. Remove the class after the scroll completes
+      // (Roughly 1000ms is enough for most smooth scrolls)
+      setTimeout(() => {
+        document.body.classList.remove("is-scrolling");
+      }, 1200);
+    }
+  };
+
   return (
-    <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-start pt-20 md:pt-32 overflow-hidden bg-white">
+    <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-start pt-20 md:pt-32 overflow-hidden bg-white lg:h-[980px]">
       {/* 1. Background Layer (Grid and Radial Lines) */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/club-host/hero-bg.png"
+          src="/club-host/Hero-bg.png"
           alt="Background Grid"
           fill
           priority
           className="object-cover object-center"
+          sizes="100vw"
         />
       </div>
 
       {/* 2. Content Layer */}
-      <div className="relative z-20 flex flex-col items-center text-center px-6 max-w-4xl">
+      <div className="absolute z-20 flex flex-col items-center text-center px-6 max-w-4xl mt-10">
         <motion.span
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-sm md:text-base font-bold tracking-[0.2em] text-gray-800 mb-4"
+          className="md:text-[24px] lg:text-[32px] font-medium text-gray-800 mb-4 font-['Poppins']"
         >
           CLUB HOST
         </motion.span>
@@ -35,7 +55,7 @@ export default function ClubHostHeader() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-[900] text-[#3D3D3D] leading-tight"
+          className="text-5xl lg:text-7xl font-[900] text-[#3D3D3D] leading-tight"
         >
           Start Your Own <br />
           <span className={brandPink}>Club</span>
@@ -58,6 +78,7 @@ export default function ClubHostHeader() {
           className="mt-10"
         >
           <button
+            onClick={scrollToDownloadapp}
             className={`${buttonGradient} text-white px-10 py-3.5 rounded-full font-bold text-lg shadow-[0_10px_20px_rgba(233,0,176,0.3)] hover:scale-105 transition-transform active:scale-95`}
           >
             Become a Host
@@ -79,6 +100,7 @@ export default function ClubHostHeader() {
           height={600}
           className="w-full h-auto object-contain object-bottom"
           priority
+          sizes="100vw"
         />
       </motion.div>
     </section>

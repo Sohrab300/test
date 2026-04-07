@@ -55,9 +55,12 @@ const DownloadApp = () => {
                 className="bg-[#1e1e1e] flex items-center gap-1 px-4 py-3 rounded-lg border border-white/10 transition-shadow hover:shadow-2xl"
               >
                 <div className="w-8 h-8 relative">
-                  <img
+                  <Image
                     src="/assets/icons/App_Store.svg"
                     alt="Apple"
+                    width={32}
+                    height={32}
+                    unoptimized
                     className="w-full h-full scale-110"
                   />
                 </div>
@@ -80,9 +83,12 @@ const DownloadApp = () => {
                 className="bg-[#1e1e1e] flex items-center gap-1 px-4 py-3 rounded-lg border border-white/10 transition-shadow hover:shadow-2xl"
               >
                 <div className="w-8 h-8 relative">
-                  <img
+                  <Image
                     src="/assets/icons/Play_Store.svg"
                     alt="Play Store"
+                    width={32}
+                    height={32}
+                    unoptimized
                     className="w-full h-full"
                   />
                 </div>
@@ -107,11 +113,11 @@ const DownloadApp = () => {
           >
             <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
               <Image
-                src="/Hero-download.png"
+                src="/hero-download.png"
                 alt="MingleWise App Interface"
                 fill
                 className="object-contain"
-                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               />
             </div>
           </motion.div>

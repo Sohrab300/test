@@ -1,10 +1,11 @@
+import NextImage from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 import {
   Users,
   Calendar,
   ShieldCheck,
-  Image,
+  Image as ImageIcon,
   Shield,
   Search,
 } from "lucide-react";
@@ -36,7 +37,7 @@ const features = [
     src: "/assets/connect-svg/Vector-4.svg",
     description:
       "Capture and share memories from your events with the community. Post photos and highlights so others can see the fun across different clubs.",
-    icon: <Image size={32} />,
+    icon: <ImageIcon size={32} />,
   },
   {
     title: "Safe and Supportive Community",
@@ -89,9 +90,12 @@ const ConnectSection = () => {
                 {/* Icon Box */}
                 {/* ICON BOX - MODIFIED FOR EXTERNAL SVGs */}
                 <div className="mb-6 w-20 h-20 flex items-center justify-center rounded-2xl transition-all duration-300 bg-[#F3EAFF] group-hover:bg-white/20">
-                  <img
+                  <NextImage
                     src={feature.src}
                     alt={feature.title}
+                    width={40}
+                    height={40}
+                    unoptimized
                     className="w-10 h-10 object-contain transition-all duration-300 group-hover:brightness-0 group-hover:invert"
                   />
                 </div>

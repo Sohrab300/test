@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const hobbies = [
@@ -85,7 +86,13 @@ const HobbiesGrid = () => {
               {/* Top Content */}
               <div className="text-white">
                 <div className="mb-3">
-                  <img src={hobby.src} className={hobby.size} alt="" />
+                  <Image
+                    src={hobby.src}
+                    alt=""
+                    width={52}
+                    height={42}
+                    className={hobby.size}
+                  />
                 </div>
                 <h3 className="text-2xl font-extrabold tracking-tight">
                   {hobby.name}
