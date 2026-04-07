@@ -95,6 +95,7 @@ export default function Header() {
             width={1400}
             height={800}
             priority
+            unoptimized
             className="w-full h-auto object-contain"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 1200px, 1400px"
           />

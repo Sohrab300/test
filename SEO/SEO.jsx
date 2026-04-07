@@ -1,17 +1,18 @@
-import Head from 'next/head'
-import config from 'config/seo_meta.json'
-import { Fragment } from 'react'
+import Head from "next/head";
+import config from "config/seo_meta.json";
+import { Fragment } from "react";
 
 /* const serverUrl = process.env.NEXT_PUBLIC_URL //if have any server side configuration, then put your url to env file */
-const serverUrl = ""
+const serverUrl = process.env.NEXT_PUBLIC_URL || "https://minglewise.com";
 
-const serverBaseUrl = serverUrl ? `${serverUrl}` : null
+const serverBaseUrl = serverUrl ? `${serverUrl}` : null;
 // const serverBaseUrl = serverUrl ? `https://${serverUrl}` : null
 
-
-const ogImage = ({url, width, height, alt , index }) => {
+const ogImage = (img, index) => {
+  const { url, width, height, alt } = img;
+  if (!url) return null;
   // generate full URL for OG image url with store base URL
-  const imgUrl = serverBaseUrl ? new URL(url, serverBaseUrl).toString() : url
+  const imgUrl = serverBaseUrl ? new URL(url, serverBaseUrl).toString() : url;
   return (
     <Fragment key={`og:image:${index}`}>
       <meta
@@ -35,16 +36,10 @@ const ogImage = ({url, width, height, alt , index }) => {
         content={alt}
       />
     </Fragment>
-  )
-}
+  );
+};
 
-const SEO = ({
-  title,
-  description,
-  openGraph,
-  robots,
-  children,
-}) => {
+const SEO = ({ title, description, openGraph, robots, children }) => {
   /**
    * @see https://nextjs.org/docs/api-reference/next/head
    *
@@ -123,15 +118,15 @@ const SEO = ({
           content={config.twitter.handle}
         />
       )}
-      <meta key="robots" name="robots" content={robots ?? 'index,follow'} />
+      <meta key="robots" name="robots" content={robots ?? "index,follow"} />
       <meta
         key="googlebot"
         name="googlebot"
-        content={robots ?? 'index,follow'}
+        content={robots ?? "index,follow"}
       ></meta>
       {children}
     </Head>
-  )
-}
+  );
+};
 
-export default SEO
+export default SEO;

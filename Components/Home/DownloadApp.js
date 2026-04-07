@@ -116,6 +116,7 @@ const DownloadApp = () => {
                 src="/hero-download.png"
                 alt="MingleWise App Interface"
                 fill
+                unoptimized
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               />
